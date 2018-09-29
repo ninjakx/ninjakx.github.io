@@ -13,6 +13,17 @@ function setRandomColor() {
   $("#colorpad").css("background-color", getRandomColor());
 }
 
+window.onresize = function() {
+  var canvas = document.querySelector('canvas'),
+  ctx = canvas.getContext('2d');
+      colorDot = getRandomColor(),
+      color = '#00bdbf';
+  canvas.width = document.getElementById('container').clientWidth;
+  canvas.height = document.getElementById('container').clientHeight;
+  
+
+}
+
 var canvasDots =  function() {
 
   var canvas = document.querySelector('canvas'),
@@ -20,9 +31,9 @@ var canvasDots =  function() {
       colorDot = getRandomColor(),
       color = '#00bdbf';
   
-  canvas.width = document.getElementById('bkg').clientWidth;
-  canvas.height = document.getElementById('bkg').clientHeight;
-  console.log(canvas.width);
+  canvas.width = document.getElementById('container').clientWidth;
+  canvas.height = document.getElementById('container').clientHeight;
+
   canvas.style.display = 'block';
   ctx.fillStyle = colorDot;
   ctx.lineWidth = .1;
@@ -134,11 +145,21 @@ window.onload = function() {
 #bkg
 {
   background: black;
-  height:100%;
+  height:70%;
+
 }
-.canvas{
+.overlay {
   position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
+  top: 30%;
+  left: 20%;
+  bottom: 180;
+  right: 30%;
+  pointer-events: none;
+}
+.h1
+{
+  text-align: center;
+  color: #40f313;
 
 }
 </style>
@@ -159,9 +180,13 @@ window.onload = function() {
     {% endif %}
 
     {% include header.html %}
-<div id ="bkg">
-
- <canvas></canvas>  
+<div id="container" style="background:black;text-align:center;">
+ 
+ <canvas style="width: 100%;height:80%">
+ </canvas>  
+ <div class="overlay">
+    <h1>WELCOME TO MY BLOG PAGE</h1>
+  </div>
 
 </div>
 
