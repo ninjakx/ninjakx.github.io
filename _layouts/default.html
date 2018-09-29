@@ -1,6 +1,147 @@
----
-layout: compress
----
+<script type="text/javascript">
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.round(Math.random() * 15)];
+    }
+    return color;
+}
+
+
+function setRandomColor() {
+  $("#colorpad").css("background-color", getRandomColor());
+}
+
+var canvasDots =  function() {
+
+  var canvas = document.querySelector('canvas'),
+      ctx = canvas.getContext('2d');
+      colorDot = getRandomColor(),
+      color = '#00bdbf';
+  
+  canvas.width = document.getElementById('bkg').clientWidth;
+  canvas.height = document.getElementById('bkg').clientHeight;
+  console.log(canvas.width);
+  canvas.style.display = 'block';
+  ctx.fillStyle = colorDot;
+  ctx.lineWidth = .1;
+  ctx.strokeStyle = color;
+
+  var mousePosition = {
+    x: 30 * canvas.width / 100,
+    y: 30 * canvas.height / 100
+  };
+
+  var dots = {
+    nb: 700,
+    distance: 40,
+    d_radius: 100,
+    array: []
+  };
+
+  function Dot(){
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.colorDot = getRandomColor();
+    //this.color = colorDot;
+    //this.fillStyle = this.colorDot;
+    this.vx = -.7 + Math.random();
+    this.vy = -.7 + Math.random();
+
+    this.radius = Math.random()*1.4;
+  }
+
+  Dot.prototype = {
+    create: function(){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    //colorDot = getRandomColor(),  
+    ctx.fillStyle = this.colorDot;
+    ctx.lineWidth = .1;
+    ctx.strokeStyle = '#00bdbf';
+      ctx.fill();
+    },
+
+    animate: function(){
+      for(i = 0; i < dots.nb; i++){
+
+        var dot = dots.array[i];
+
+        if(dot.y < 0 || dot.y > canvas.height){
+          dot.vx = dot.vx;
+          dot.vy = - dot.vy;
+        }
+        else if(dot.x < 0 || dot.x > canvas.width){
+          dot.vx = - dot.vx;
+          dot.vy = dot.vy;
+        }
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+      }
+    },
+
+    line: function(){
+      for(i = 0; i < dots.nb; i++){
+        for(j = 0; j < dots.nb; j++){
+          i_dot = dots.array[i];
+          j_dot = dots.array[j];
+
+          if((i_dot.x - j_dot.x) < dots.distance && (i_dot.y - j_dot.y) < dots.distance && (i_dot.x - j_dot.x) > - dots.distance && (i_dot.y - j_dot.y) > - dots.distance){
+            if((i_dot.x - mousePosition.x) < dots.d_radius && (i_dot.y - mousePosition.y) < dots.d_radius && (i_dot.x - mousePosition.x) > - dots.d_radius && (i_dot.y - mousePosition.y) > - dots.d_radius){
+              ctx.beginPath();
+              ctx.moveTo(i_dot.x, i_dot.y);
+              ctx.lineTo(j_dot.x, j_dot.y);
+              ctx.stroke();
+              ctx.closePath();
+            }
+          }
+        }
+      }
+    }
+  };
+
+  function createDots(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for(i = 0; i < dots.nb; i++){
+      dots.array.push(new Dot());
+      dot = dots.array[i];
+
+      dot.create();
+    }
+
+    dot.line();
+    dot.animate();
+  }
+
+  window.onmousemove = function(parameter) {
+    mousePosition.x = parameter.pageX;
+    mousePosition.y = parameter.pageY;
+  }
+
+  mousePosition.x = window.innerWidth / 2;
+  mousePosition.y = window.innerHeight / 2;
+
+  setInterval(createDots, 1000/30); 
+};
+
+window.onload = function() {
+  canvasDots();
+};
+</script>
+
+<style>
+#bkg
+{
+  background: black;
+  height:100%;
+}
+.canvas{
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+
+}
+</style>
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
 
@@ -18,13 +159,11 @@ layout: compress
     {% endif %}
 
     {% include header.html %}
+<div id ="bkg">
 
-    <div class="hero lazyload" data-bg="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.hero_img }}">
-      <div class="hero__wrap">
-        <h1 class="hero__title">{{ site.title | escape }}</h1>
-        <p class="hero__meta">{{ site.tagline }}</p>
-      </div>
-    </div>
+ <canvas></canvas>  
+
+</div>
 
     <main class="site__content">
       <section class="blog">
