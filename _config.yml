@@ -17,9 +17,9 @@ social:
 
 # THEME SETTINGS
 navigation: # Navigation links
-  - {name: 'Home', link: '/'}
-  - {name: 'About', link: '/about'}
-  - {name: 'Contact', link: '/contact'}
+  - {name: 'Home', link: '/', sym: 'home'}
+  - {name: 'About', link: '/about', sym: 'user'}
+  - {name: 'Contact', link: '/contact', sym: 'pencil-square-o'}
 
 tagline: >
   Modern Jekyll theme focused on speed performance &amp; SEO best practices
