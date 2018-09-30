@@ -1,8 +1,8 @@
 # SITE CONFIGURATION
-title: Sleek # your site title
+title: Kriti Sahu # your site title
 author: ninjakx # You :P
 description: > # Meta description of Homepage
- My personal blog website.
+ My personal blog website with portfolio.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ninjakx.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
