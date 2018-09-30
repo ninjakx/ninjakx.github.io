@@ -14,7 +14,6 @@ social:
     - https://github.com/ninjakx
 
   
-
 # THEME SETTINGS
 navigation: # Navigation links
   - {name: 'Home', link: '/', sym: 'home'}

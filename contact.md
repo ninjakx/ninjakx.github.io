@@ -5,8 +5,7 @@ permalink: /contact/
 ---
  
  <style>
- 
-.contact-form{
+ .contact-form{
     background: #42c4ff;
     margin-top: 10%;
     margin-bottom: 5%;
@@ -76,7 +75,6 @@ Fill in the form or [email me](mailto:{{site.email}}).
         <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
     </div>
             {% include form.html %}
-
 			{% include modal.html %}     
 </div>  
 
