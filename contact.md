@@ -62,7 +62,7 @@ permalink: /contact/
 </style>
 
 
-Fill in the form or [email me](mailto:{{site.email}}).  
+<h5 style="font-family: cursive;">Fill in the form or <a href="mailto:{{site.email}}"> email me </a>.</h5>
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
