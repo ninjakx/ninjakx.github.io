@@ -21,8 +21,6 @@ permalink: /about/
 }	
 }
 
-
-
 </style>
 <div class="row" style="display: block;">
   <div class="container">
