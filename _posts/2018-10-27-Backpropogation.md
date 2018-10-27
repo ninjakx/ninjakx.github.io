@@ -133,10 +133,10 @@ After updating the weights we can see loss has been minimised. Originally it was
 
 
 
-Code:
+## Code:
 [Neural Network from scratch in c++](https://github.com/ninjakx/Neural_network_solver)
 
 
-References:
+## References:
 [a step by step backpropagation example](https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/)
 
