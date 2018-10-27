@@ -5,9 +5,6 @@ featured-img: nn
 categories: [ANN]
 ---
 
-# Neural_network_solver
-C++ program to solve a Neural network.
-
 ## Figure
 !["NN"](https://github.com/ninjakx/Neural_network_solver/raw/master/NN.png)
 
