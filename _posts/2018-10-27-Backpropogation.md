@@ -29,7 +29,6 @@ We calculate the error for each output neuron using the squared error function a
 
 ![img3](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20E_%7Btotal%7D%20%26%3D%20%5Csum%20%5Cfrac%7B1%7D%7B2%7D%28target%20-%20output%29%5E%7B2%7D%20%5C%5C%20E_%7Bo1%7D%20%26%3D%20%5Cfrac%7B1%7D%7B2%7D%28target_%7BO1%7D%20-%20out_%7BO1%7D%29%5E%7B2%7D%20%5C%5C%20%26%3D%20%5Cfrac%7B1%7D%7B2%7D%280.6%20-%200.544556%20%29%5E%7B2%7D%20%3D%200.001537%20%5C%5C%20%5Cend%7Balign*%7D)
 
-
 ## The Backwards Pass
 
 We use backpropogation to update the weights in order to make the predicted output closer to the desired/target output, thereby minimizing the error for each output neuron and the network as a whole. 
@@ -131,4 +130,11 @@ We calculate the partial derivative of the total net input to ![img34](https://l
 Similarly all the weights can be find out using the same as given above.
 
 After updating the weights we can see loss has been minimised. Originally it was 0.0317292 but it reduces to 0.0314531 after applying backpropogation. 
+
+
+
+
+
+Code for implementing it on c++ is here:
+[code](https://github.com/ninjakx/Neural_network_solver)
 
