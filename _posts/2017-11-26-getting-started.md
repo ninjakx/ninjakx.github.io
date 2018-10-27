@@ -5,83 +5,133 @@ featured-img: sleek
 mathjax: true
 ---
 
-# Getting started
+# Neural_network_solver
+C++ program to solve a Neural network.
 
-[GitHub Pages](https://pages.github.com) can automatically generate and serve the website for you.
-Let's say you have a username/organisation `my-org` and project `my-proj`; if you locate Jekyll source under `blog` folder of master branch in your repo `github.com/my-org/my-proj`, the website will be served on `my-org.github.io/my-proj`.
+## Figure
+!["NN"](https://github.com/ninjakx/Neural_network_solver/raw/master/NN.png)
 
-1. Just download or fork and clone the source from [github.com/janczizikow/sleek](https://github.com/janczizikow/sleek/).
-2. Make sure your local machine has ruby and node
-3. Edit site settings in  `_config.yml` file according to your project.
-4. Replace `favicons` and `_includes/logo.svg` with your own logo.
+In the given example, activation for hidden layer as well as for output layer is taken to be a Sigmoid function.  
+The goal of backpropagation is to optimize the weights so that the neural network can learn how to correctly map arbitrary inputs to outputs.
 
-**Note** that you might have to adjust some CSS depending on the width and height of your logo. You can find Header / Navigation related SCSS in `_sass/layout/nav.scss`.
+## Forward Pass
 
-## Writing content
+We are assuming that there is no bias.
+The net input for H<sub>11</sub> can be calculated as below followed by squashing using the logistic function to get the output at that node:
 
-### Posts
+![img1](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20net_%7BH11%7D%20%26%3D%20%28w_%7BH11.I1%7D%20*%20I_1%29%20&plus;%20%28w_%7BH11.I2%7D%20*%20I_2%29%20&plus;%20%28w_%7BH11.I3%7D%20*%20I_3%29%20&plus;%20%28w_%7BH11.I4%7D%20*%20I_4%29%5C%5C%20%26%20%3D%20%280.5%20*%201%29%20&plus;%20%280.4%20*%202%29%20&plus;%20%28%200.1%20*%20-1%29%20&plus;%20%280.2%20*%201%29%20%5C%5C%20%26%20%3D%201.4%20%5C%5C%20%5C%5C%20out_%7BH11%7D%20%26%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BH11%7D%7D%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-1.4%7D%7D%20%5C%5C%20%26%20%3D%200.802184%20%5C%5C%20%5C%5C%20net_%7BH12%7D%20%26%3D%20%28w_%7BH12.I1%7D%20*%20I_1%29%20&plus;%20%28w_%7BH12.I2%7D%20*%20I_2%29%20&plus;%20%28w_%7BH12.I3%7D%20*%20I_3%29%20&plus;%20%28w_%7BH12.I4%7D%20*%20I_4%29%5C%5C%20%26%20%3D%20%280.65%20*%201%29%20&plus;%20%280.15%20*%202%29%20&plus;%20%28%200.2%20*%20-1%29%20&plus;%20%280.7%20*%201%29%20%5C%5C%20%26%20%3D%201.45%20%5C%5C%20%5C%5C%20out_%7BH12%7D%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BH12%7D%7D%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-1.45%7D%7D%20%5C%5C%20%26%20%3D%200.80998%20%5C%5C%20%5C%5C%20%5Cend%7Balign*%7D)
 
-Create a new Markdown file such as `2017-01-13-my-post.md` in `_post` folder. Configure YAML Front Matter (stuff between `---`):
+Now the output at the nodes of first hidden layer serve as a input for the second hidden layer. We perform the same procedure to find out the output at the nodes of second hidden layer which in turn determines the value at the output node.
 
-```yaml
+![img2](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20net_%7BH21%7D%20%26%3D%20%28w_%7BH21.H11%7D%20*%20H_%7B11%7D%29%20&plus;%20%28w_%7BH21.H12%7D%20*%20H_%7B12%7D%29%20%5C%5C%20%26%20%3D%20%280.1%20*%200.802184%29%20&plus;%20%280.2%20*%200.80998%29%20%5C%5C%20%26%20%3D%200.43%20%5C%5C%20%5C%5C%20out_%7BH21%7D%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BH21%7D%7D%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-0.43%7D%7D%20%5C%5C%20%26%20%3D%200.80998%20%5C%5C%20%5C%5C%20net_%7BH22%7D%20%26%3D%20%28w_%7BH22.H11%7D%20*%20H_%7B11%7D%29%20&plus;%20%28w_%7BH22.H12%7D%20*%20H_%7B12%7D%29%5C%5C%20%26%20%3D%20%280.3%20*%200.802184%29%20&plus;%20%280.4%20*%200.80998%29%20%5C%5C%20%26%20%3D%201%20%5C%5C%20%5C%5C%20out_%7BH22%7D%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BH22%7D%7D%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-1%7D%7D%20%5C%5C%20%26%20%3D%200.637529%20%5C%5C%20%5C%5C%20net_%7BO1%7D%20%26%3D%20%28w_%7BO1.H21%7D%20*%20H_%7B21%7D%29%20&plus;%20%28w_%7BO1.H22%7D%20*%20H_%7B22%7D%29%20%5C%5C%20%26%20%3D%20%28-0.25%20*%200.56026%29%20&plus;%20%280.5%20*%200.637529%29%20%5C%5C%20%26%20%3D%200.17%20%5C%5C%20%5C%5C%20out_%7BO1%7D%20%26%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BO1%7D%7D%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B0.17%7D%7D%20%5C%5C%20%26%20%3D%200.544556%20%5C%5C%20%5C%5C%20%5Cend%7Balign*%7D)
 
----
-layout: post # needs to be post
-title: Getting Started with Sleek # title of your post
-featured-img: sleek #optional - if you want you can include hero image
----
 
-```
+## Calculating the Total Error
 
-#### Images
+We calculate the error for each output neuron using the squared error function and sum them to get the total error:
 
-In case you want to add a hero image to the post, apart from changing `featured-img` in YAML, you also need to add the image file to the project. To do so, just upload an image in `.jpg` format to `_img` folder. The name must before the `.jpg` file extension has to match with `featured-img` in YAML. Next, run `gulp img` from command line to generate optimized version of the image and all the thumbnails. You have to restart  the jekyll server to see the changes. Sleek uses [Lazy Sizes](https://github.com/aFarkas/lazysizes) Lazy Loader for loading images. Check the link for more info. Lazy Sizes doesnt't require any configuration and it's going to be included in your bundled js file.
+![img3](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20E_%7Btotal%7D%20%26%3D%20%5Csum%20%5Cfrac%7B1%7D%7B2%7D%28target%20-%20output%29%5E%7B2%7D%20%5C%5C%20E_%7Bo1%7D%20%26%3D%20%5Cfrac%7B1%7D%7B2%7D%28target_%7BO1%7D%20-%20out_%7BO1%7D%29%5E%7B2%7D%20%5C%5C%20%26%3D%20%5Cfrac%7B1%7D%7B2%7D%280.6%20-%200.544556%20%29%5E%7B2%7D%20%3D%200.001537%20%5C%5C%20%5Cend%7Balign*%7D)
 
-### Pages
 
-The home page is located under `index.md` file. To change the content or design you have to edit the `default.html` file in `_layouts` folder.
+## The Backwards Pass
 
-In order to add a new page, create a new html or markdown file under root directory or inside `_pages` folder. To add a link to the page, edit `navigation` setting in `_config.yml`.
+We use backpropogation to update the weights in order to make the predicted output closer to the desired/target output, thereby minimizing the error for each output neuron and the network as a whole. 
 
-### Images TODO
+### Ouput Layer
 
-Introduce gulp optimization
+Consider W<sub>O<sub>1</sub>.H<sub>21</sub></sub>. We want to know how much a change in W<sub>O<sub>1</sub>.H<sub>21</sub></sub> affects the total error, aka ![img04](https://latex.codecogs.com/gif.latex?%5Cdpi%7B80%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO_1.H_%7B21%7D%7D%7D)
 
-Breakpoint | Image Type | Width | Retina
------------- | ------------ | ------------- | -------------
-xs |Post Thumb | 535px | 1070px
-sm |Post Thumb | 500px| 1000px
-md |Post Thumb | 329.375px | 658.75px
-lg |Post Thumb | 445.625px | 891.25px
-xl |Post Thumb | 353.125px | 706.25px
+By applying the chain rule we know that:
 
-Breakpoint | Image Type | Width | Retina
------------- | ------------ | ------------- | -------------
-xs |Post Hero | 535px | 1070px
-sm |Post Hero | 500px| 1000px
-md |Post Hero | 329.375px | 658.75px
-lg |Post Hero | 445.625px | 891.25px
-xl |Post Hero | 353.125px | 706.25px
+![img4](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%3D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%5Cend%7Balign*%7D)
 
-### MathJax
+We first determine how much does the total error change with respect to the output.
 
-If you want to use [MathJax](https://www.mathjax.org/) in your posts, add `mathjax: true` in [YAML front matter](https://jekyllrb.com/docs/frontmatter/) of your post:
+![img5](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20%3D%20-%28target_%7BO1%7D%20-%20out_%7BO1%7D%29%20%3D%20-%280.6%20-%200.544556%29%20%3D%200.055444%20%5Cend%7Balign*%7D)
 
-```yaml
----
-layout: post
-title: Blog Post with MathJax
-featured-img: sleek # optional - if you want you can include name of hero image
-mathjax: true # add this line in order to enable MathJax in the post
----
-```
+Then we determine how much does the output of O<sub>1</sub> change with respect to its total net input.
+For that, first we calculate the partial derivative of the logistic function which is the output multiplied by 1 minus the output.
 
-#### Example
+![img6](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20out_%7BO1%7D%20%26%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BO1%7D%7D%7D%20%5C%5C%20%5Cfrac%7B%5Cpartial%20out_%7Bo1%7D%7D%7B%5Cpartial%20net_%7Bo1%7D%7D%20%26%3D%20out_%7Bo1%7D%281%20-%20out_%7Bo1%7D%29%20%3D%200.544556%281%20-%200.544556%29%20%3D%200.248014762%20%5Cend%7Balign*%7D)
 
-In N-dimensional simplex noise, the squared kernel summation radius $r^2$ is $\frac 1 2$
-for all values of N. This is because the edge length of the N-simplex $s = \sqrt {\frac {N} {N + 1}}$
-divides out of the N-simplex height $h = s \sqrt {\frac {N + 1} {2N}}$.
-The kerel summation radius $r$ is equal to the N-simplex height $h$.
+Finally, we determine how much does the total net input of O<sub>1</sub> change with respect to W<sub>O<sub>1</sub>.H<sub>21</sub></sub>.
 
-$$ r = h = \sqrt{\frac {1} {2}} = \sqrt{\frac {N} {N+1}} \sqrt{\frac {N+1} {2N}} $$
-Happy hacking!
+![img7](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20net_%7BO1%7D%20%26%3D%20w_%7BO1.H21%7D%20*%20out_%7BH21%7D%20&plus;%20w_%7BO1.H22%7D%20*%20out_%7BH22%7D%20%5C%5C%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%26%3D%201%20*%20out_%7BH21%7D%20*%20%28w_%7BO1.H21%7D%29%5E%7B%281%20-%201%29%7D%20&plus;%200%20%3D%20out_%7BH21%7D%20%3D%200.56026%20%5Cend%7Balign*%7D)
+
+Putting it all together:
+
+![img8](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%26%3D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%5C%5C%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%26%3D%200.055444%20*%200.248014762%20*%200.56026%20%3D%200.007704096302%20%5Cend%7Balign*%7D)
+
+![img9](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%3D%20-%28target_%7BO1%7D%20-%20out_%7BO1%7D%29%20*%20out_%7BO1%7D%281%20-%20out_%7BO1%7D%29%20*%20out_%7BH21%7D%20%5Cend%7Balign*%7D)
+
+Alternatively, we have ![img10](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20%5Cend%7Balign*%7D) and ![img11](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20out_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20%5Cend%7Balign*%7D) which can be written as ![img12](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20%5Cend%7Balign*%7D) , aka ![img13](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cdelta_%7BO1%7D%20%5Cend%7Balign*%7D) (the Greek letter delta) aka the node delta. We can use this to rewrite the calculation above:
+
+![img14](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cdelta_%7BO1%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20%5Cend%7Balign*%7D)
+
+![img15](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cdelta_%7BO1%7D%20%3D%20-%28target_%7BO1%7D%20-%20out_%7BO1%7D%29%20*%20out_%7BO1%7D%281%20-%20out_%7BO1%7D%29%20%5Cend%7Balign*%7D)
+
+Therefore:
+
+![img16](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%3D%20%5Cdelta_%7BO1%7D%20out_%7BH21%7D%20%5Cend%7Balign*%7D)
+
+Some sources extract the negative sign from \delta so it would be written as:
+
+![img17](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%3D%20-%5Cdelta_%7BO1%7D%20out_%7BH21%7D%20%5Cend%7Balign*%7D)
+
+To decrease the error, we then subtract this value from the current weight (optionally multiplied by some learning rate, eta, which we’ll set to 0.2):
+
+![img18](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20w_%7BO1.H21%7D%5E%7B&plus;%7D%20%3D%20w_%7BO1.H21%7D%20-%20%5Ceta%20*%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BO1.H21%7D%7D%20%3D%20-0.25%20-%20%28-%200.2%20*%200.007704096302%29%20%3D%20-0.24845918%20%5Cend%7Balign*%7D)
+
+similarly 
+![img19](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20w_%7BO1.H22%7D%5E%7B&plus;%7D%20%3D%200.501753%20%5Cend%7Balign*%7D)
+
+### Hidden Layer
+
+We want to know how much a change in W<sub>H<sub>21</sub>.H<sub>11</sub></sub> affects the total error.
+We use the same process but there will be a slight difference that here we will consider the effect of output neurons as output of each hidden layer neuron contributes to the output (and therefore error).
+
+![img20](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7BH21%7D%7D%7B%5Cpartial%20net_%7BH21%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BH21%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%5Cend%7Balign*%7D%20%20%20)
+
+![img21](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%5Cend%7Balign*%7D)
+
+![img22](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%5Cend%7Balign*%7D)
+
+![img23](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20%3D%200.055444%20*%200.2480144762%20%3D%200.013750914%20%5Cend%7Balign*%7D)
+
+
+
+And ![img24](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%5Cend%7Balign*%7D) is equal to ![img25](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20w_%7BH21.H11%7D%20%5Cend%7Balign*%7D)
+
+
+![img25](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbegin%7Balign*%7D%20net_%7BO1%7D%20%3D%20w_%7BO1.H21%7D%20*%20out_%7BH21%7D%20&plus;%20w_%7BO1.H22%7D%20*%20out_%7BH22%7D%20%5Cend%7Balign*%7D)
+
+![img26](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%20w_%7BO1.H21%7D%20%3D%20-0.25%20%5Cend%7Balign*%7D)
+
+![img27](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20net_%7BO1%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%200.013750914%20*%20-0.25%20%3D%20-0.0034377285%20%5Cend%7Balign*%7D)
+
+![img28](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7BO1%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%3D%20-0.0034377285%20%5Cend%7Balign*%7D)
+
+we have ![img29](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BH21%7D%7D%20%5Cend%7Balign*%7D)  ,we need to figure out ![img30](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20out_%7BH21%7D%7D%7B%5Cpartial%20net_%7BH21%7D%7D%20%5Cend%7Balign*%7D)  and then ![img31](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B80%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20net_%7BH21%7D%7D%7B%5Cpartial%20w%7D%20%5Cend%7Balign*%7D) for each weight:
+
+![img32](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20out_%7BH21%7D%20%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-net_%7BH21%7D%7D%7D%20%5Cend%7Balign*%7D)
+
+![img33](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20out_%7BH21%7D%7D%7B%5Cpartial%20net_%7BH21%7D%7D%20%3D%20out_%7BH21%7D%281%20-%20out_%7BH21%7D%29%20%3D%200.56026%20*%20%281-0.56026%29%20%3D%200.246368732%20%5Cend%7Balign*%7D)
+
+We calculate the partial derivative of the total net input to ![img34](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20H_%7B21%7D%20%5Cend%7Balign*%7D) with respect to ![img35](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20w_%7BH21.H11%7D%20%5Cend%7Balign*%7D) the same as we did for the output neuron:
+
+![img36](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20net_%7BH21%7D%20%3D%20%28w_%7BH21.H11%7D%20*%20H_%7B11%7D%29%20&plus;%20%28w_%7BH21.H12%7D%20*%20H_%7B12%7D%29%20%5Cend%7Balign*%7D)
+
+![img37](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20net_%7BH21%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%3D%20H_%7B11%7D%20%3D%200.802184%20%5Cend%7Balign*%7D)
+
+![img38](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%3D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BH_%7B21%7D%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7BH_%7B21%7D%7D%7D%7B%5Cpartial%20net_%7BH_%7B21%7D%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BH_%7B21%7D%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%5Cend%7Balign*%7D)
+
+![img39](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%3D%20-0.0034377285%20*%200.246368732%20*%200.802184%20%3D%200.0006872264573%20%5Cend%7Balign*%7D)
+
+![img40](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%26%3D%20%28%5Csum%5Climits_%7Bo%7D%7B%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7Bo%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20out_%7Bo%7D%7D%7B%5Cpartial%20net_%7Bo%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7Bo%7D%7D%7B%5Cpartial%20out_%7BH_%7B21%7D%7D%7D%7D%29%20*%20%5Cfrac%7B%5Cpartial%20out_%7BH_%7B21%7D%7D%7D%7B%5Cpartial%20net_%7BH_%7B21%7D%7D%7D%20*%20%5Cfrac%7B%5Cpartial%20net_%7BH_%7B21%7D%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%5C%5C%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%26%3D%20%28%5Csum%5Climits_%7Bo%7D%7B%5Cdelta_%7Bo%7D%20*%20w_%7Bho%7D%7D%29%20*%20out_%7BH_%7B21%7D%7D%281%20-%20out_%7BH_%7B21%7D%7D%29%20*%20H_%7B11%7D%20%5C%5C%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%26%3D%20%5Cdelta_%7BH_%7B21%7D%7DH_%7B11%7D%20%5Cend%7Balign*%7D)
+
+![img41](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20w_%7BH21.H11%7D%5E%7B&plus;%7D%20%3D%20w_%7BH21.H11%7D%20-%20%5Ceta%20*%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20w_%7BH21.H11%7D%7D%20%3D%200.1%20-%20%280.2%20*%20-0.0006872264573%29%20%3D%200.099862554%20%5Cend%7Balign*%7D)
+
+Similarly all the weights can be find out using the same as given above.
+
+After updating the weights we can see loss has been minimised. Originally it was 0.0317292 but it reduces to 0.0314531 after applying backpropogation. 
+
