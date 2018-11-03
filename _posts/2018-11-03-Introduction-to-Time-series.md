@@ -60,7 +60,8 @@ Let us see which of the following series are stationary.
 
 
 
-
+difference(t) = observation(t) – observation(t-1)
+----------------------------------------------------
 
 
 
