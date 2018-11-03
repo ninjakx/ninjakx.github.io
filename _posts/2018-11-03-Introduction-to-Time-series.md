@@ -55,11 +55,7 @@ A stationary time series is relatively easy to predict. Its statistical properti
  
 Let us see which of the following series are stationary.
 1) 
-
-      ```diff
- 		+ this will be highlighted 		in green
-		- Non stationary as There is trend.
-	   ```
+<p style='color:red'>This is some red text.</p>
 
 
 
