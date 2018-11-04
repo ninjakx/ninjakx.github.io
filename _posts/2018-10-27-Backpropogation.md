@@ -132,6 +132,8 @@ Similarly all the weights can be find out using the same as given above.
 After updating the weights we can see loss has been minimised. Originally it was 0.0317292 but it reduces to 0.0314531 after applying backpropogation. 
 
 
+<script src="https://gist.github.com/d0b692ddea91058aff0f782c8d7b6f4f.js"> </script>
+
 
 ## Code:
 [Neural Network from scratch in c++](https://github.com/ninjakx/Neural_network_solver)
