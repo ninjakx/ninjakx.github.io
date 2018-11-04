@@ -373,9 +373,9 @@ pyplot.show()
 ![reg](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/trendreg.PNG)
 
 
-### TESTING FOR STATIONARITY
+## TESTING FOR STATIONARITY
 
-**Augmented Dickey-Fuller test (ADF)**
+### Augmented Dickey-Fuller test (ADF)
 
 An augmented Dickey-Fuller test (ADF) tests the null hypothesis that a unit root(a feature that can cause issues in statistical inference) is present in a time series sample.
 The Augmented Dickey-Fuller (ADF) statistic, used in the test, is a negative number. The more negative it is, the stronger the rejection of the hypothesis that there is a unit root at some level of confidence 
@@ -411,7 +411,7 @@ ADF Statistic is negative and lower but larger than the critical values.
 the p-value is also above 0.05. We cannot reject H0. The series has a unit root and so it is non-stationary.
 
 
-**Kwiatkowski–Phillips–Schmidt–Shin Test (KPSS)**
+### Kwiatkowski–Phillips–Schmidt–Shin Test (KPSS)
 
 It is carried out for testing a null hypothesis that an observable time series is stationary around a deterministic trend (i.e. trend-stationary) against the alternative of a unit root.
 KPSS is based on linear regression. It breaks up a series into three parts: a deterministic trend (β<sub>t</sub>), a random walk (r<sub>t</sub>), and a stationary error (ε<sub>t</sub>), with the regression equation:  
@@ -445,6 +445,7 @@ Since the KPSS statistic is greater than the critical values, the Null hypothesi
 
 <br>
 <br>
+
 ## REFERENCES
 
 [Moving averages](https://otexts.org/fpp2/moving-averages.html)
