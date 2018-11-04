@@ -397,10 +397,15 @@ for key, value in result[4].items():
 
 `
 ADF Statistic: -0.667494
+
 p-value: 0.854991
+
 Critical Values:
+
         1%: -3.458
+        
         5%: -2.874
+        
         10%: -2.573
 `
 
@@ -429,11 +434,17 @@ for key, value in result[3].items():
 ```
 
 `KPSS Statistic: 1.532254
+
 p-value: 0.010000
+
 Critical Values:
+
         10%: 0.347
+        
         5%: 0.463
+        
         2.5%: 0.574
+        
         1%: 0.739`
 
 Since the KPSS statistic is greater than the critical values, the Null hypothesis is rejected; the series is non-stationary.
