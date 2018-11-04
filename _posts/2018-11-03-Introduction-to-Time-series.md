@@ -205,13 +205,16 @@ pyplot.show()
 ## ESTIMATING THE TREND
 
 There are Two approaches:
+
 1)Using a smoothing procedure.
+
 2)Specifying a regression equation for the trend.
 
 ### 1)Using a smoothing procedure
 We can apply Moving Average Filtering or Exponential Weighted Moving Average (EWMA) method.
 
 **Moving  Average Filtering**
+
 a moving average (rolling average or running average) is a calculation to analyze data points by creating a series of averages of different subsets of the full data set. 
 It is used to smooth out short-term fluctuations and highlight longer-term trends or cycles. The threshold between short-term and long-term depends on the application, and the parameters of the moving average will be set accordingly. It identifies the trend directions.  A rising Moving Average indicates that the time series is in an uptrend, while a declining Moving Average indicates that it is in a downtrend. 
 
@@ -219,9 +222,10 @@ A moving average of order m can be written as:
 
 ![img](https://latex.codecogs.com/gif.latex?\hat{T}_{t}&space;=&space;\frac{1}{m}&space;\sum_{j=-k}^k&space;y_{t&plus;j})
 
-The two commonly used Moving Averages are the Simple Moving Average (SMA) and the Exponential Moving Average (EMA) 
+The two commonly used Moving Averages are the Simple Moving Average (SMA) and the Exponential Moving Average (EMA).
 
 **a)Simple Moving Average**
+
 Simple Moving Average technical analysis indicator that averages quantity over a period of time and plots that average as a line.
 
 ```python
