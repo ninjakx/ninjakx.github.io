@@ -153,7 +153,7 @@ result.plot()
 pyplot.show()
 ```
 
-![BEER Decompose](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/beer.png)
+![BEER Decompose](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/beer1.png)
 
 **Multiplicative decomposition:**
 In this, we assume that the different components affected the time series proportionally.
@@ -221,7 +221,7 @@ df1 = pd.DataFrame(y, columns=['sales_val'])
 df1.index = time
 df1.head(10)
 ```
-![sales val](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s1.png)
+![sales val](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s1.PNG)
 
 ```python
 # Calculating the short-window simple moving average
@@ -229,7 +229,7 @@ short_rolling = df1.rolling(window=10).mean()
 short_rolling.head(10)
 ```
 
-![sales val rolling](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s2.png)
+![sales val rolling](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s2.PNG)
 
 ![img6](https://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20%5Clarge%20S%28t%3D10%29%20%3D%20%5Cfrac%7BF%28t%3D0%29&plus;F%28t%3D1%29&plus;....&plus;F%28t%3D10%29%7D%7B10%7D%20%5C%5C%5C%5C%20%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%3D%20%5Cfrac%7B115&plus;105.4&plus;75.8&plus;71.2&plus;106.6&plus;82.0&plus;47.4&plus;117.8&plus;103.2&plus;83.6%7D%7B10%7D%5C%5C%20%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%20%3D%20%5Cfrac%7B908%7D%7B10%7D%20%5C%5C%20%5C%5C%20%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%20%3D%2090.8)
 
@@ -252,8 +252,7 @@ my_year_month_fmt = mdates.DateFormatter('%m/%y')
 ax.xaxis.set_major_formatter(my_year_month_fmt)
 ```
 
-![rolling](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s3.png)
-
+![rolling](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s3.PNG)
 We can see SMA time series are much less noisy than the original price time series but this SMA time series lag the original price time series with the lag(delay) of L months. 
 In order to reduce the lag induced by SMA, we will go with the EMA. 
 
@@ -280,7 +279,7 @@ ema_short = df1.ewm(span=10,adjust=False).mean() # adjust is kept at false to en
 ema_short.head(10)
 ```
 
-![EMA](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s11.png)
+![EMA](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s11.PNG)
 
 ![img5](https://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20%5Clarge%20%5C%5C%20%5Calpha%20%3D%20%5Cfrac%7B2%7D%7BM%20&plus;%201%7D%20%3D%20%5Cfrac%7B2%7D%7B10%20&plus;%201%7D%20%3D%200.1818%20%5C%5C%20%5C%5C%20E%28t%29%20%3D%20%281-%5Calpha%29*%20E%28t-1%29%20&plus;%20%5Calpha%20P%28t%29%20%5C%5C%20E%28t0%29%20%3D%20P%28t0%29%5C%5C%5C%5C%20E%28t%3D0%29%20%3D%20115%20%5C%5C%20E%28t%3D1%29%20%3D%20%281-0.1818%29E%28t%3D0%29&plus;0.1818P%28t%3D1%29%5C%5C%20%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%20%3D%200.818*115%20%7E&plus;%7E0.1818*105.4%5C%5C%20%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%20%3D%2094.0909%20%7E&plus;%7E19.1672%5C%5C%20%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%7E%20%3D%20113.25)
 
@@ -290,7 +289,7 @@ ema_long = df1.ewm(span=70,adjust=False).mean()
 #ema_long.head(10)
 ```
 
-![ema_long](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s12.png)
+![ema_long](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s12.PNG)
 
 ```python
 fig, ax = plt.subplots(figsize=(16,5))
@@ -303,7 +302,7 @@ my_year_month_fmt = mdates.DateFormatter('%m/%y')
 ax.xaxis.set_major_formatter(my_year_month_fmt)
 ```
 
-![combined](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/smaema.png)
+![combined](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/smaema.PNG)
 
 ```python
 import matplotlib.dates as mdates
@@ -323,7 +322,7 @@ df1.__delitem__('SMA_10days')
 df1.__delitem__('EMA_10days')
 ```
 
-![plot](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/scomb.png)
+![plot](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/scomb.PNG)
 
 As we can see EMA reacts to price changes faster than the SMA.
 
@@ -353,7 +352,7 @@ pyplot.plot(trend)
 pyplot.show()
 ```
 
-![reg](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/trendreg.png)
+![reg](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/trendreg.PNG)
 
 
 ### TESTING FOR STATIONARITY
@@ -422,13 +421,21 @@ Since the KPSS statistic is greater than the critical values, the Null hypothesi
 
 
 
+
+
+
 ## REFERENCES
 
 [Moving averages](https://otexts.org/fpp2/moving-averages.html)
+
 [Seasonal trend decomposition](https://anomaly.io/seasonal-trend-decomposition-in-r/)
+
 [How to Check if Time Series Data is Stationary with Python](https://machinelearningmastery.com/time-series-data-stationary-python/)
+
 [Moving average trading strategy](https://www.learndatasci.com/tutorials/python-finance-part-3-moving-average-trading-strategy/)
+
 [Time series with trend and seasonality components](http://web.vu.lt/mif/a.buteikis/wp-content/uploads/2018/02/Lecture_03.pdf)
+
 [KPSS Test: Definition and Interpretation](https://www.statisticshowto.datasciencecentral.com/kpss-test/)
 
 
