@@ -91,6 +91,18 @@ Series                     |  Result
 </table>
 
 
+<table class="tg">
+  <tr>
+    <th class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"></th>
+    <th class="tg-0pky"><span style="color:rgb(254, 0, 0)">Non Stationary</span><br>as there is a trend and seasonality(variance is also increasing).</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:rgb(254, 0, 0)">Non Stationary</span> as there is a trend and seasonality(variance is also increasing).</td>
+  </tr>
+</table>
+
+
 
 
 
