@@ -59,13 +59,31 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 **Let us see which of the following series are stationary.**
 <table class="tg">
   <tr>
-    <th class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"></th>
-    <th class="tg-0pky"><span style="color:green">Non Stationary</span><br>as there is a trend and seasonality(variance is also increasing).</th>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:red">Non Stationary</span><br>as there is a trend and seasonality(variance is also increasing).</td>
   </tr>
   <tr>
   <tr>
-    <th class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st2.png" width="600" height="300"></th>
-    <th class="tg-0pky"><span style="color:green">Non Stationary</span><br> as there is a Seasonality.</th>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st2.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:red">Non Stationary</span><br> as there is a Seasonality.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st3.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:green">Stationary.</span><br> It has cycles which are aperiodic. In the long-term, the timing of these cycles is not predictable. Hence the series is stationary.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st5.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:green">Stationary.</span><br></td>
+  </tr>
+  <tr>
+  <tr>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st6.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:green">Non Stationary.</span><br> as there are Trends and changing levels.</td>
+  </tr>
+  <tr>
+  <tr>
+    <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st7.png" width="600" height="300"></td>
+    <td class="tg-0pky"><span style="color:green">Non Stationary.</span><br> as there are Trends and changing levels.</td>
   </tr>
 </table>
 
