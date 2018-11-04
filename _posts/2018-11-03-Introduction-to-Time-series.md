@@ -210,7 +210,7 @@ There are Two approaches:
 
 2)Specifying a regression equation for the trend.
 
-### 1)Using a smoothing procedure
+## 1)Using a smoothing procedure
 We can apply Moving Average Filtering or Exponential Weighted Moving Average (EWMA) method.
 
 **Moving  Average Filtering**
