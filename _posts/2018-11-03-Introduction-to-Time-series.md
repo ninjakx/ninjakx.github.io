@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to Time Series Analysis using Python"
-featured-img: bgstf
+featured-img: bgtsf
 categories: [Machine learning]
 ---
 
@@ -395,19 +395,14 @@ for key, value in result[4].items():
     print('\t%s: %.3f' % (key, value))
 ```
 
-`
+```
 ADF Statistic: -0.667494
-
 p-value: 0.854991
-
 Critical Values:
-
-        1%: -3.458
-        
-        5%: -2.874
-        
+        1%: -3.458       
+        5%: -2.874       
         10%: -2.573
-`
+```
 
 ADF Statistic is negative and lower but larger than the critical values.
 the p-value is also above 0.05. We cannot reject H0. The series has a unit root and so it is non-stationary.
@@ -433,27 +428,22 @@ for key, value in result[3].items():
     print('\t%s: %.3f' % (key, value))
 ```
 
-`KPSS Statistic: 1.532254
-
+```
+KPSS Statistic: 1.532254
 p-value: 0.010000
-
 Critical Values:
-
-        10%: 0.347
-        
-        5%: 0.463
-        
-        2.5%: 0.574
-        
-        1%: 0.739`
+        10%: 0.347       
+        5%: 0.463        
+        2.5%: 0.574        
+        1%: 0.739
+```
 
 Since the KPSS statistic is greater than the critical values, the Null hypothesis is rejected; the series is non-stationary.
 
-
-
-
-
-
+<br>
+<br>
+<br>
+<br>
 
 ## REFERENCES
 
