@@ -461,30 +461,3 @@ Since the KPSS statistic is greater than the critical values, the Null hypothesi
 [Time series with trend and seasonality components](http://web.vu.lt/mif/a.buteikis/wp-content/uploads/2018/02/Lecture_03.pdf)
 
 [KPSS Test: Definition and Interpretation](https://www.statisticshowto.datasciencecentral.com/kpss-test/)
-
-
-
-
-
-
-
-<blockquote>
-  
-  ggfgfgf
-</blockquote>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
