@@ -35,12 +35,12 @@ For example, How do you decide when is the right time to buy something. For inst
 * Trend component - a long-term increase or decrease in the data regularly through time which might not be linear. Sometimes the trend might change direction as time increases and result in varying mean over time.
 It is the result of influences such as population growth, price inflation, and general economic changes. There can be Uptrend, Downtrend, Horizontal Trend depending on the pattern.
 
-![trend example](https://github.com/ninjakx/ninjakx.github.io/blob/master/assets/img/posts/trenddef.png)
+![trend example](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/trenddef.png)
 
 * Cyclical component - exists when data exhibit rises and falls that are not of the fixed period. Here the average length of cycles is longer than the length of a seasonal pattern. 
 In practice, the trend component is assumed to include also the cyclical component. Sometimes the trend and cyclical components together are called as trend-cycle.These kinds of patterns are much harder to predict. 
 
-![cyclic example](https://github.com/ninjakx/ninjakx.github.io/blob/master/assets/img/posts/2_cycl4.jpg)
+![cyclic example](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/2_cycl4.jpg)
 
 * Seasonal component - exists when a series exhibits regular fluctuations based on the season (e.g. every month/quarter/year) and results in varying mean over time. Seasonality is always of a fixed and known period. It is the result of influences such as weather conditions, customs of people etc.
 
@@ -48,7 +48,7 @@ In practice, the trend component is assumed to include also the cyclical compone
 
 * Irregular component – It is the residual time series after the trend-cycle and the seasonal components (including calendar effects) have been removed. It corresponds to the high-frequency fluctuations of the series and is a stationary process.
 
-![all in one example](https://github.com/ninjakx/ninjakx.github.io/blob/master/assets/img/posts/ss.PNG)
+![all in one example](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/ss.PNG)
 
 ## STATIONARITY
 
@@ -56,10 +56,10 @@ A stationary time series is one whose statistical properties such as mean, var
 As Trends can result in a varying mean over time while that of seasonality can result in a changing variance over time. Thus time series with trends, or with seasonality, is not stationary.
 But time series with cyclic behavior (but with no trend or seasonality) is stationary as the cycles are not of a fixed length, we cannot be sure where the peaks and troughs of the cycles will be.
 
-![all the time series type](https://github.com/ninjakx/ninjakx.github.io/blob/master/assets/img/posts/nst.png)
+![all the time series type](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/nst.png)
 
 **Let us see which of the following series are stationary.**
-**1)** ![stationary1](https://github.com/ninjakx/ninjakx.github.io/blob/master/assets/img/posts/st1.png)  
+**1)** ![stationary1](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png)  
  <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
 
 
