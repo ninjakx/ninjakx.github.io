@@ -67,7 +67,7 @@ Series                     |  Result
 
 | <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png">  | <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png"> | <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png"> |
 |:---:|:---:|:---:|
-| <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing). |  as there is a trend and seasonality(variance is also increasing). | http://graphicstock.com |
+| `<p style='color:red'>Non Stationary</p>` as there is a trend and seasonality(variance is also increasing). |  as there is a trend and seasonality(variance is also increasing). | `http://graphicstock.com` |
 
 
 
