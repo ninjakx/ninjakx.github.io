@@ -73,6 +73,23 @@ Series                     |  Result
 |:---:|:---:|
 | <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing). |  as there is a trend and seasonality(variance is also increasing). |
 
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">&lt;img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"&gt;</th>
+    <th class="tg-0pky"><span style="color:rgb(254, 0, 0)">Non Stationary</span><br>as there is a trend and seasonality(variance is also increasing).</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">&lt;img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"&gt;</td>
+    <td class="tg-0pky"><span style="color:rgb(254, 0, 0)">Non Stationary</span> as there is a trend and seasonality(variance is also increasing).</td>
+  </tr>
+</table>
+
 
 
 
