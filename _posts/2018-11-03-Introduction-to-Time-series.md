@@ -76,11 +76,11 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
   </tr>
   <tr>
     <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st6.png" width="600" height="300"></td>
-    <td class="tg-0pky"><span style="color:red">Non Stationary.</span><br> as there are Trends and changing levels.</td>
+    <td class="tg-0pky"><span style="color:red">Non Stationary</span><br> as there are Trends and changing levels.</td>
   </tr>
   <tr>
     <td class="tg-0pky"><img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st7.png" width="600" height="300"></td>
-    <td class="tg-0pky"><span style="color:red">Non Stationary.</span><br> as there are Trends and changing levels.</td>
+    <td class="tg-0pky"><span style="color:red">Non Stationary</span><br> as there are Trends and changing levels.</td>
   </tr>
 </table>
 
@@ -124,7 +124,7 @@ It is usually for making the time series stationary on variance. We can perform 
 
 Non-stationary time series can have multiplication decomposition as well as additive decomposition.
 
-**Additive decomposition:**
+### Additive decomposition:
 
 In this, we assume that the different components affected the time series additively.
 
@@ -163,7 +163,7 @@ pyplot.show()
 
 ![BEER Decompose](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/beer1.png)
 
-**Multiplicative decomposition:**
+### Multiplicative decomposition:
 
 In this, we assume that the different components affected the time series proportionally.
 
@@ -203,8 +203,11 @@ pyplot.show()
 ![Passenger Decompose](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/mu.png)
 
 ## ESTIMATING THE TREND
+
 There are Two approaches:
+
 1)Using a smoothing procedure.
+
 2)Specifying a regression equation for the trend.
 
 ### 1)Using a smoothing procedure
@@ -216,7 +219,7 @@ It is used to smooth out short-term fluctuations and highlight longer-term trend
 
 A moving average of order m can be written as:
 
-![img](https://www.codecogs.com/eqnedit.php?latex=\hat{T}_{t}&space;=&space;\frac{1}{m}&space;\sum_{j=-k}^k&space;y_{t&plus;j}")
+![img](https://latex.codecogs.com/gif.latex?\hat{T}_{t}&space;=&space;\frac{1}{m}&space;\sum_{j=-k}^k&space;y_{t&plus;j})
 
 The two commonly used Moving Averages are the Simple Moving Average (SMA) and the Exponential Moving Average (EMA) 
 
@@ -272,11 +275,11 @@ In order to reduce the lag induced by SMA, we will go with the EMA.
 
 ![img3](https://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20%5Clarge%20%5C%5C%20%5Ctext%7BEMA%7D%5Cleft%28t%5Cright%29%20%26%20%3D%20%5Cleft%281-%5Calpha%5Cright%29%5Ctext%7BEMA%7D%5Cleft%28t-1%5Cright%29%20&plus;%20%5Calpha%20%5C%20p%5Cleft%28t%5Cright%29%20%5C%5C%20%26%20%5Ctext%7BEMA%7D%5Cleft%28t_0%5Cright%29%20%26%20%3D%20p%5Cleft%28t_0%5Cright%29)
 
-where p(t) is the price at time t and α is the decay parameter of the EMA.
+Where p(t) is the price at time t and α is the decay parameter of the EMA.
 
 The relationship between α and that of lag is given as 
 
-![img2](https://latex.codecogs.com/gif.latex?%5Cdpi%7B80%7D%20%5Calpha%20%3D%20%5Cfrac%7B1%7D%7BL%20&plus;%201%7D)
+![img2](https://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20%5Clarge%20%5Calpha%20%3D%20%5Cfrac%7B1%7D%7BL&plus;1%7D)
 
 Or
 
