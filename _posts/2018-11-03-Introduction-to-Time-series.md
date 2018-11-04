@@ -58,8 +58,7 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 
 **Let us see which of the following series are stationary.**
 
-**1)** <img align="right" src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
-<p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
+**1)**  <p style='color:red'><img align="left" src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"> Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
 
 <img align="right" src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st2.png" width="600" height="300">
 <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing). 
