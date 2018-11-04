@@ -63,6 +63,7 @@ Series                     |  Result
 :-------------------------:|:-------------------------:
 <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
  | Non Stationary as there is a trend and seasonality(variance is also increasing).
+:-------------------------:|:-------------------------:
 <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
  | Non Stationary as there is a trend and seasonality(variance is also increasing).
 
