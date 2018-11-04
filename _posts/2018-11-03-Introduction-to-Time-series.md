@@ -68,7 +68,8 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 
 Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
- <img align="left" src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300"> | <p style='color:red'> Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
+ <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
+ | <p style='color:red'> Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
 
 
 
