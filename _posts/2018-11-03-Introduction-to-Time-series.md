@@ -66,10 +66,10 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 
 <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st2.png" width="600" height="300">
 
-Solarized dark             |  Solarized Ocean
+Series             |  Result
 :-------------------------:|:-------------------------:
  <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
- | <p style='color:red'> Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
+ | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `#f03c15`
 
 
 
