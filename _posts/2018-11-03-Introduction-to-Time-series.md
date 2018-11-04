@@ -442,9 +442,6 @@ Since the KPSS statistic is greater than the critical values, the Null hypothesi
 
 <br>
 <br>
-<br>
-<br>
-
 ## REFERENCES
 
 [Moving averages](https://otexts.org/fpp2/moving-averages.html)
