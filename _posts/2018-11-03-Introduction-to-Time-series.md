@@ -21,7 +21,7 @@ Or in other words, a collection of observations of well-defined data items obtai
 
 ![examples](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/TSEXAMPLE.png)
 
-<p style='color:green'> **NOTE:** Data collected irregularly are not time series.</p>
+<p style='color:red'> **NOTE:** Data collected irregularly are not time series.</p>
 
 
 ## WHY DO WE NEED TIME SERIES?
@@ -44,8 +44,6 @@ In practice, the trend component is assumed to include also the cyclical compone
 
 * Seasonal component - exists when a series exhibits regular fluctuations based on the season (e.g. every month/quarter/year) and results in varying mean over time. Seasonality is always of a fixed and known period. It is the result of influences such as weather conditions, customs of people etc.
 
-
-
 * Irregular component – It is the residual time series after the trend-cycle and the seasonal components (including calendar effects) have been removed. It corresponds to the high-frequency fluctuations of the series and is a stationary process.
 
 ![all in one example](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/ss.PNG)
@@ -59,8 +57,9 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 ![all the time series type](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/nst.png)
 
 **Let us see which of the following series are stationary.**
-**1)** ![stationary1](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png)  
- <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
+
+**1)** 
+![stationary1](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png)  <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
 
 
 
