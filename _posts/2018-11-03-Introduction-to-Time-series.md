@@ -21,7 +21,7 @@ Or in other words, a collection of observations of well-defined data items obtai
 
 ![examples](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/TSEXAMPLE.png)
 
-<p style='color:red'> **NOTE:** Data collected irregularly are not time series.</p>
+<p style='color:red'> NOTE: Data collected irregularly are not time series.</p>
 
 
 ## WHY DO WE NEED TIME SERIES?
@@ -58,10 +58,10 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 
 **Let us see which of the following series are stationary.**
 
-**1)** <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
+**1)** <img align="right" src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
 <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing).
 
-<img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st2.png" width="600" height="300">
+<img align="right" src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st2.png" width="600" height="300">
 <p style='color:red'>Non Stationary</p> as there is a trend and seasonality(variance is also increasing). 
 
 
