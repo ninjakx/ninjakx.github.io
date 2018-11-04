@@ -89,23 +89,26 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 ### DIFFERENCING
 
 Differencing is a method of transforming a time series dataset.
-> Differencing can help stabilize the mean of the time series by removing changes in the level of a time series, and so eliminating (or reducing) trend and seasonality. 
+`Differencing can help stabilize the mean of the time series by removing changes in the level of a time series, and so eliminating (or reducing) trend and seasonality.`
 
 It is performed by subtracting the previous observation from the current observation. 
 
-difference(t) = observation(t) – observation(t-1)
-----------------------------------------------------------
+**difference(t) = observation(t) – observation(t-1)**
+
 Once the prediction is made, we have to convert it back into its original scale.
 To invert it back, we add the observation at the prior time step to the difference value.
 
-inverted(t) = differenced(t) + observation(t-1)
------------------------------------------------------------
+**inverted(t) = differenced(t) + observation(t-1)**
+
 Some terms you need to be aware of:
+
 **Lag Difference**
+
 The lag-1 difference is the difference between consecutive observations. In other words, you shift the time series by 1 and then take the difference of the observation at t and observation at t-1(shifted time series).
 For time series with a seasonal component, the lag may be expected to be the period (width) of the seasonality. 
 
 **Difference Order**
+
 It is defined as the number of times differencing is performed until all temporal dependence has been removed.
 
 ### SEASONAL DIFFERENCING
@@ -116,12 +119,17 @@ In this instead of calculating the difference between consecutive values, we cal
 
 It is usually for making the time series stationary on variance. We can perform power transform, log transform or square root transform on series and then we do differencing to make the data stationary.
 
+
+## DECOMPOSITION OF NON STATIONARY TIME SERIES
+
 Non-stationary time series can have multiplication decomposition as well as additive decomposition.
 
 **Additive decomposition:**
+
 In this, we assume that the different components affected the time series additively.
-Time series = Seasonal Effect + Trend + Cyclical + Residual
-----------------------------------------------------------------
+
+**Time series = Seasonal Effect + Trend + Cyclical + Residual**
+
 A good example of additive time series is beer production.
 Consider the quarterly beer production dataset.
 
@@ -156,12 +164,15 @@ pyplot.show()
 ![BEER Decompose](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/beer1.png)
 
 **Multiplicative decomposition:**
+
 In this, we assume that the different components affected the time series proportionally.
-Time Series = Seasonal Effect * Trend * Cyclical * Residual
-------------------------------------------------------------------
+
+**Time Series = Seasonal Effect * Trend * Cyclical * Residual**
+
 If we want to fit the multiplicative model. We can take the Log on both the side of the above expression. 
-log(Time Series) = log(Seasonal Effect) + log(Trend) +  log(Cyclical)  + log( Residual)
------------------------------------------------------------------------
+
+**log(Time Series) = log(Seasonal Effect) + log(Trend) +  log(Cyclical)  + log( Residual)**
+
 After then we will take the exponential of it.
 A good example of multiplicative time series is Airline Passenger Numbers 
 
@@ -199,12 +210,13 @@ There are Two approaches:
 ### 1)Using a smoothing procedure
 We can apply Moving Average Filtering or Exponential Weighted Moving Average (EWMA) method.
 
-    **Moving  Average Filtering**
+**Moving  Average Filtering**
 a moving average (rolling average or running average) is a calculation to analyze data points by creating a series of averages of different subsets of the full data set. 
 It is used to smooth out short-term fluctuations and highlight longer-term trends or cycles. The threshold between short-term and long-term depends on the application, and the parameters of the moving average will be set accordingly. It identifies the trend directions.  A rising Moving Average indicates that the time series is in an uptrend, while a declining Moving Average indicates that it is in a downtrend. 
 
 A moving average of order m can be written as:
-![img](<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{T}_{t}&space;=&space;\frac{1}{m}&space;\sum_{j=-k}^k&space;y_{t&plus;j}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{T}_{t}&space;=&space;\frac{1}{m}&space;\sum_{j=-k}^k&space;y_{t&plus;j}" title="\hat{T}_{t} = \frac{1}{m} \sum_{j=-k}^k y_{t+j}" /></a>)
+
+![img](https://www.codecogs.com/eqnedit.php?latex=\hat{T}_{t}&space;=&space;\frac{1}{m}&space;\sum_{j=-k}^k&space;y_{t&plus;j}")
 
 The two commonly used Moving Averages are the Simple Moving Average (SMA) and the Exponential Moving Average (EMA) 
 
@@ -286,7 +298,7 @@ ema_short.head(10)
 ```python
 ema_long = df1.ewm(span=70,adjust=False).mean()
 # adjust is kept at false to enable the recursive calculation mode
-#ema_long.head(10)
+ema_long.head(10)
 ```
 
 ![ema_long](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s12.PNG)
@@ -302,7 +314,7 @@ my_year_month_fmt = mdates.DateFormatter('%m/%y')
 ax.xaxis.set_major_formatter(my_year_month_fmt)
 ```
 
-![combined](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/smaema.PNG)
+![combined](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/s4.PNG)
 
 ```python
 import matplotlib.dates as mdates
@@ -326,8 +338,11 @@ df1.__delitem__('EMA_10days')
 
 As we can see EMA reacts to price changes faster than the SMA.
 
+
+
 ### **ADVANTAGES OF MOVING AVERAGES** 
 It can be used for linear as well as non-linear trends.
+
 
 ### **DISADVANTAGES OF MOVING AVERAGES**
 The trend obtained by moving averages generally is neither a straight line nor a standard curve and hence can’t be extended for predicting future values. Trend value won’t be present for some periods at the start and at the end of the time series hence not applicable for short-term series.
@@ -357,7 +372,8 @@ pyplot.show()
 
 ### TESTING FOR STATIONARITY
 
-**Augmented Dickey-Fuller test (ADF) **
+**Augmented Dickey-Fuller test (ADF)**
+
 An augmented Dickey-Fuller test (ADF) tests the null hypothesis that a unit root(a feature that can cause issues in statistical inference) is present in a time series sample.
 The Augmented Dickey-Fuller (ADF) statistic, used in the test, is a negative number. The more negative it is, the stronger the rejection of the hypothesis that there is a unit root at some level of confidence 
 An autoregressive model is used and it tries to optimize information criterion across multiple different lag values. 
@@ -390,7 +406,8 @@ ADF Statistic is negative and lower but larger than the critical values.
 the p-value is also above 0.05. We cannot reject H0. The series has a unit root and so it is non-stationary.
 
 
-**  Kwiatkowski–Phillips–Schmidt–Shin Test (KPSS) **
+**Kwiatkowski–Phillips–Schmidt–Shin Test (KPSS)**
+
 It is carried out for testing a null hypothesis that an observable time series is stationary around a deterministic trend (i.e. trend-stationary) against the alternative of a unit root.
 KPSS is based on linear regression. It breaks up a series into three parts: a deterministic trend (β<sub>t</sub>), a random walk (r<sub>t</sub>), and a stationary error (ε<sub>t</sub>), with the regression equation:  
 
@@ -418,8 +435,6 @@ Critical Values:
         1%: 0.739**
 
 Since the KPSS statistic is greater than the critical values, the Null hypothesis is rejected; the series is non-stationary.
-
-
 
 
 
