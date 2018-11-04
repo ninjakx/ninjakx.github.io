@@ -69,7 +69,7 @@ But time series with cyclic behavior (but with no trend or seasonality) is stati
 Series             |  Result
 :-------------------------:|:-------------------------:
  <img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/st1.png" width="600" height="300">
- | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `#f03c15`
+ | Non Stationary]as there is a trend and seasonality(variance is also increasing).
 
 
 
