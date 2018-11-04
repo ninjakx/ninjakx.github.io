@@ -205,9 +205,7 @@ pyplot.show()
 ## ESTIMATING THE TREND
 
 There are Two approaches:
-
 1)Using a smoothing procedure.
-
 2)Specifying a regression equation for the trend.
 
 ### 1)Using a smoothing procedure
