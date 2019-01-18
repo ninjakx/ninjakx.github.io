@@ -1,0 +1,537 @@
+
+# ABOUT HABERNMAN'S SURVIVAL DATA SET
+The dataset contains cases from a study that was conducted between 1958 and 1970 at the University of Chicago's Billings Hospital on the survival of patients who had undergone surgery for breast cancer.
+***
+### ATTRIBUTES:
+
+**Age:** Age of patient at time of operation (numerical) .  
+
+**Op_Year:** Patient's year of operation (year - 1900, numerical) 
+
+**Axil_nodes: **Number of positive axillary nodes detected (numerical) 
+
+**Surv_status: **Survival status (class attribute) 
+
+  ----------------**1** = the patient survived 5 years or longer 
+
+----------------**2** = the patient died within 5 year
+                    
+
+
+
+
+
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+hab = pd.read_csv("haberman.csv")
+hab.columns = ['Age', 'Operation_year', 'Positive_axillary_nodes', 'Survival_status']
+hab.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 306 entries, 0 to 305
+    Data columns (total 4 columns):
+    Age                        306 non-null int64
+    Operation_year             306 non-null int64
+    Positive_axillary_nodes    306 non-null int64
+    Survival_status            306 non-null int64
+    dtypes: int64(4)
+    memory usage: 9.6 KB
+    
+
+**OBSERVATIONS:**
+* No of instances = 306
+* There is no missing values in all of the three attributes.
+* All the attribute's values are in integer.
+
+## Higher Level Statics
+
+
+```python
+features = list(hab.columns[:-1])
+classes = hab.Survival_status.value_counts()
+print("No. of points:",len(hab))
+print("No. of features:",len(features),' namely',','.join(features))
+print("No. of classes:",len(classes))
+print("No. of points per classes:\n",classes)
+```
+
+    No. of points: 306
+    No. of features: 3  namely Age,Operation_year,Positive_axillary_nodes
+    No. of classes: 2
+    No. of points per classes:
+     1    225
+    2     81
+    Name: Survival_status, dtype: int64
+    
+
+### STATISTICAL INFORMATION
+
+
+```python
+hab.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Operation_year</th>
+      <th>Positive_axillary_nodes</th>
+      <th>Survival_status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>306.000000</td>
+      <td>306.000000</td>
+      <td>306.000000</td>
+      <td>306.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>52.457516</td>
+      <td>62.852941</td>
+      <td>4.026144</td>
+      <td>1.264706</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>10.803452</td>
+      <td>3.249405</td>
+      <td>7.189654</td>
+      <td>0.441899</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>30.000000</td>
+      <td>58.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>44.000000</td>
+      <td>60.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>52.000000</td>
+      <td>63.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>60.750000</td>
+      <td>65.750000</td>
+      <td>4.000000</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>83.000000</td>
+      <td>69.000000</td>
+      <td>52.000000</td>
+      <td>2.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+**Observations:**
+* Average age of the patient is 52 yrs and the range lies between 30 to 80 out of which: 
+
+   * About 25 % of the patients have the age around 44.
+   * About 75% of the patients have the age around 60.
+
+* Max number of positive auxillary nodes detected is 52.
+     * About 25% of the patients have no positive axillary lymph nodes.
+     * About 75 % of the patients have around 4 positive axillary lymph nodes.           
+* About 25% of the patients have survived 5 years or more than it.
+* About 75% of the patients have survived less than 5 years.
+
+
+
+```python
+f = plt.figure(figsize=(48,28))
+hab1 = hab.groupby(['Age','Survival_status']).size()
+label=['survived 5 years or longer','died within 5 year']
+hab1.unstack().plot(kind='bar',figsize=(28,10),fontsize=20)
+plt.legend(label,fontsize=20)
+plt.show()
+
+```
+
+
+    <Figure size 3456x2016 with 0 Axes>
+
+
+
+![png](output_8_1.png)
+
+
+### How many survived 5 years or more than it?
+
+
+```python
+f,ax = plt.subplots(1,2,figsize=(18,8))
+hab['Survival_status'].value_counts().plot(kind='pie',explode=[0,0.1],autopct='%1.1f%%', ax=ax[0],labels=['survived 5 years or longer','died within 5 year'],fontsize=15, shadow=True)
+ax[0].set_title('Survival Status',fontsize=25)
+ax[0].set_ylabel('')
+sns.countplot(hab['Survival_status'], ax=ax[1])
+ax[1].set_title('Survival Status',fontsize=25)
+ax[1].set_xticklabels(labels=['survived 5 years or longer','died within 5 year'],fontsize=15)
+for p in ax[1].patches:
+    ax[1].annotate('{:d}'.format(p.get_height()), (p.get_x()+0.35, p.get_height()+3),fontsize=15)
+plt.show()
+```
+
+
+![png](output_10_0.png)
+
+
+**Observations:**
+* Out of **306** patients **225** patients *survived 5 years or longer* than it i.e. About **73.5%** of the total patients lived for *5 years or longer than that*.
+* **81** patients *died within 5 years* i.e **26.5%** of the total patients *died within 5 years*.
+
+ ## Objective
+***To predict the patient survival who had undergone surgery for breast cancer.***
+
+## Univariate Analysis
+ It provides summary statistics for each field in the raw data set. 
+ Example:  **PDF ,CDF ,Box plot ,Violin plot**.
+ It does not deal with cause or relationships and the main purpose of the analysis is to describe the data and find patterns  that exist within it.
+ 
+
+
+### PDF
+* A histogram can be used to illustrate the shape, or the distribution, of data. It plot the frequency of score occurrences in a continuous data set that has been divided into classes, called bins. The height of the bins either represents counts, or it represents proportions.
+* A probability density function (PDF) is the continuous version of the histogram with densities (consider infinitesimal small bin widths).
+* It specifies how the probability density is distributed over the range of values that a random variable can take.
+
+
+```python
+for idx, feature in enumerate(list(hab.columns)[:-1]):
+    g=sns.FacetGrid(hab, hue="Survival_status", size=6) \
+       .map(sns.distplot, feature) \
+       .add_legend()
+    new_labels = ['survived 5 years or longer','died within 5 year'] 
+    for t, l in zip(g._legend.texts, new_labels): t.set_text(l) 
+    plt.ylabel("Density")
+    plt.title("Histogram of "+feature)
+    plt.show()
+```
+
+    C:\Users\Kriti chaudhary\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
+      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    C:\Users\Kriti chaudhary\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
+      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    
+
+
+![png](output_15_1.png)
+
+
+    C:\Users\Kriti chaudhary\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
+      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    C:\Users\Kriti chaudhary\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
+      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    
+
+
+![png](output_15_3.png)
+
+
+    C:\Users\Kriti chaudhary\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
+      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    C:\Users\Kriti chaudhary\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
+      warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    
+
+
+![png](output_15_5.png)
+
+
+**Observation:**
+As we can the Survival status classes are overlapping massively in each of the Histogram of feature. But from the last one we can conclude that around 56-58% people who survived 5 years or longer had 0-5 Positive axillary nodes.
+
+### CDF
+The cumulative distribution function (CDF) of a real-valued random variable X is the probability that X will take a value less than or equal to x.
+
+
+```python
+class_1 = hab.loc[hab["Survival_status"] == 1];
+class_2 = hab.loc[hab["Survival_status"] == 2];
+
+```
+
+
+```python
+for idx, feature in enumerate(list(hab.columns)[:-1]):
+    plt.figure(figsize=(10,5))
+    
+    label = ['PDF of those who survived 5 years or longer','CDF of those who survived 5 years or longer','PDF of those who died within 5 year','CDF of those who died within 5 year']
+    
+    counts, bin_edges = np.histogram(class_1[feature], bins=10,density = True)
+    pdf = counts/(sum(counts))
+    print("PDF: ",pdf);
+    print("Bin edges: ",bin_edges);
+    
+    cdf = np.cumsum(pdf)
+    plt.plot(bin_edges[1:],pdf)
+    plt.plot(bin_edges[1:], cdf)
+    
+    counts, bin_edges = np.histogram(class_2[feature], bins=10,density = True)
+    pdf = counts/(sum(counts))
+    print("PDF: ",pdf);
+    print("Bin edges: ",bin_edges);  
+
+    cdf = np.cumsum(pdf)
+    plt.plot(bin_edges[1:],pdf)
+    plt.plot(bin_edges[1:], cdf)
+    
+    plt.ylabel("Density")
+    plt.title("PDF and CDF of "+feature)
+    
+    plt.legend(label)
+    
+    plt.show()
+
+```
+
+    PDF:  [0.05333333 0.10666667 0.12444444 0.09333333 0.16444444 0.16444444
+     0.09333333 0.11111111 0.06222222 0.02666667]
+    Bin edges:  [30.  34.7 39.4 44.1 48.8 53.5 58.2 62.9 67.6 72.3 77. ]
+    PDF:  [0.03703704 0.12345679 0.19753086 0.19753086 0.13580247 0.12345679
+     0.09876543 0.04938272 0.02469136 0.01234568]
+    Bin edges:  [34.  38.9 43.8 48.7 53.6 58.5 63.4 68.3 73.2 78.1 83. ]
+    
+
+
+![png](output_19_1.png)
+
+
+    PDF:  [0.18666667 0.10666667 0.10222222 0.07111111 0.09777778 0.10222222
+     0.06666667 0.09777778 0.09333333 0.07555556]
+    Bin edges:  [58.  59.1 60.2 61.3 62.4 63.5 64.6 65.7 66.8 67.9 69. ]
+    PDF:  [0.25925926 0.04938272 0.03703704 0.08641975 0.09876543 0.09876543
+     0.16049383 0.07407407 0.04938272 0.08641975]
+    Bin edges:  [58.  59.1 60.2 61.3 62.4 63.5 64.6 65.7 66.8 67.9 69. ]
+    
+
+
+![png](output_19_3.png)
+
+
+    PDF:  [0.83555556 0.08       0.02222222 0.02666667 0.01777778 0.00444444
+     0.00888889 0.         0.         0.00444444]
+    Bin edges:  [ 0.   4.6  9.2 13.8 18.4 23.  27.6 32.2 36.8 41.4 46. ]
+    PDF:  [0.56790123 0.14814815 0.13580247 0.04938272 0.07407407 0.
+     0.01234568 0.         0.         0.01234568]
+    Bin edges:  [ 0.   5.2 10.4 15.6 20.8 26.  31.2 36.4 41.6 46.8 52. ]
+    
+
+
+![png](output_19_5.png)
+
+
+**Observation**
+*  About 16% who survived 5 years or more than it are aged around 35-38.
+* About 12% who died within 5 years had  47-52 +ve axillary nodes 
+
+### BOX PLOT
+* Efficient way for presenting data, especially when it comes to comparing multiple groups thereof.
+* We can mark-off the five-number summary of a data set (minimum, 25th percentile, median, 75th percentile, maximum). 
+* The box contains 50% of the data, and the upper edge of the box represents the 75th percentile, while the lower edge is the 25th percentile.
+* The median is represented by a line drawn in the middle of the box. 
+* The interquartile range(IQR) is the difference between the upper quartile and the lower quartile.
+* Useful because it is less influenced by extreme values as it limits the range to the middle 50% of the values.
+
+
+```python
+labels = ['survived 5 years or longer','died within 5 year']
+fig, axes = plt.subplots(1, 3, figsize=(25, 5))
+
+for idx, feature in enumerate(list(hab.columns)[:-1]):
+
+    ax=sns.boxplot(x='Survival_status',y=feature, data=hab,hue = "Survival_status",ax=axes[idx])
+    medians = hab.groupby(['Survival_status'])[feature].median().values
+    median_labels = [str(np.round(s, 2)) for s in medians]
+    pos = range(len(medians))
+    for tick,label in zip(pos,ax.get_xticklabels()):
+        ax.text(pos[tick]-0.1, medians[tick]+0.2, median_labels[tick], 
+            horizontalalignment='center', size='x-large', color='b', weight='semibold')
+    h, l = ax.get_legend_handles_labels()
+    ax.legend(h, labels, title="Survival Status")
+    ax.set_title("Box plot between {} and Survival_status".format(feature))
+    #plt.legend(label)
+
+plt.show()
+```
+
+
+![png](output_22_0.png)
+
+
+**Observations**
+* The patients who operated after 1965 had chances to survive and below 1960 had chances to die.
+* Those who died within 5 years had atleast 4 positive axillary nodes.
+
+### VIOLIN PLOT
+* A Violin Plot is used to visualise the distribution of the data and its probability density.
+* It's a combination of a Box Plot and a Density Plot.
+* The thick black bar in the centre represents the interquartile range, the thin black line extended from it represents the 95% confidence intervals, and the white dot is the median.
+
+
+
+```python
+labels = ['survived 5 years or longer','died within 5 year']
+fig, axes = plt.subplots(1, 3, figsize=(25, 5))
+
+for idx, feature in enumerate(list(hab.columns)[:-1]):
+
+    ax=sns.violinplot(x='Survival_status',y=feature, data=hab,hue = "Survival_status",ax=axes[idx])
+    medians = hab.groupby(['Survival_status'])[feature].median().values
+    median_labels = [str(np.round(s, 2)) for s in medians]
+    pos = range(len(medians))
+    for tick,label in zip(pos,ax.get_xticklabels()):
+        ax.text(pos[tick]-0.1, medians[tick]+0.2, median_labels[tick], 
+            horizontalalignment='center', size='x-large', color='b', weight='semibold')
+    h, l = ax.get_legend_handles_labels()
+    ax.legend(h, labels, title="Survival Status")
+    ax.set_title("Violin plot between {} and Survival_status".format(feature))
+    #plt.legend(label)
+
+plt.show()
+```
+
+
+![png](output_25_0.png)
+
+
+## Bi-variate analysis
+* Analysis of exactly two variables.
+* One of the simplest forms of statistical analysis, used to find out if there is a relationship between two sets of values.
+
+Examples: **scatter plots, pair-plots**
+
+### Scatter Plot
+* visualizes the bivariate relationships among several pairs of variables.
+* The graph looks like a bunch of dots, but some of the graphs are a general shape or move in a general direction.
+* To test the linear relationship between continuous variables Scatter plot is a good option. We can find out how one variable is changing w.r.t. another variable.
+
+**1D scatter plot**
+
+
+```python
+for idx, feature in enumerate(list(hab.columns)[:-1]):
+    plt.figure(figsize=(10,5))
+    label = ['survived 5 years or longer','died within 5 year']
+    plt.plot(class_1[feature], np.zeros_like(class_1[feature]), 'o')
+    plt.plot(class_2[feature], np.zeros_like(class_2[feature]), 'o')
+    plt.title("1-D scatter plot for {}".format(feature))
+    plt.xlabel(feature)
+    plt.legend(label)
+    plt.show()
+```
+
+
+![png](output_29_0.png)
+
+
+
+![png](output_29_1.png)
+
+
+
+![png](output_29_2.png)
+
+
+**Observations:**
+* Of around 41-67 aged people died within 5 years.
+* Below 37 aged people had chances to survive 5 years or longer than that.
+* 1D scatter plot for operation year and +ve axillary nodes are not useful as they don't give much information.
+
+**2D Scatter plot**
+
+
+```python
+import itertools
+pairs=list(itertools.combinations(list(hab.columns)[:-1],2))
+for p in pairs:
+    label = ['survived 5 years or longer','died within 5 year']
+    sns.set_style("whitegrid");
+    sns.FacetGrid(hab, hue="Survival_status", size=5) \
+       .map(plt.scatter, p[0], p[1]) 
+    plt.legend(label)
+    plt.show()
+```
+
+
+![png](output_32_0.png)
+
+
+
+![png](output_32_1.png)
+
+
+
+![png](output_32_2.png)
+
+
+**Observations:**
+* Classes are linearly inseparable in all the cases and doesn't convey much info.
+* But we can draw little info from the plot between Positive axillary nodes and age, that the person having age between 50-60 and no of lymph detected between the range 0-3 have some chances to survive.
+
+
+### PAIR PLOT
+A pairs plot allows us to see both distribution of single variables and relationships between two variables.
+
+
+
+```python
+label = ['survived 5 years or longer','died within 5 year']
+sns.set_style("whitegrid");
+ax=sns.pairplot(hab, hue="Survival_status", vars = ["Age", "Operation_year", "Positive_axillary_nodes"],size=4);
+plt.legend(label)
+plt.show()
+
+```
+
+
+![png](output_35_0.png)
+
+
+**Conclusion:**
+* Data is having imbalanced classes.
+* The plots between pair of features are linearly inseparable
+* Positive axillary nodes info convey more info than all the other features. After then Age gives slight info.
+
