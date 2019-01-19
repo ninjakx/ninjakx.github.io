@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How Backpropogation works?"
-featured-img: nn
+featured-img: nnw
 categories: [ANN]
 ---
 
