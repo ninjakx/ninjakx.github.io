@@ -2,7 +2,7 @@
 layout: post
 title: "Introduction to Time Series Analysis using Python"
 featured-img: bgtsf
-categories: [Machine learning]
+categories: [MACHINE LEARNING]
 ---
 
 # THE BASICS OF TIME SERIES ANALYSIS
