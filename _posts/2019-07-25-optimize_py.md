@@ -262,3 +262,13 @@ c = distance_knn(arr)
 CPU times: user 992 ms, sys: 3.04 ms, total: 995 ms
 Wall time: 991 ms
 ```
+
+
+## References
+https://rushter.com/blog/numba-cython-python-optimization/ 
+https://ipython-books.github.io/43-profiling-your-code-line-by-line-with-line_profiler/ 
+https://rushter.com/blog/numba-cython-python-optimization/
+https://medium.com/coding-with-clarity/speeding-up-python-and-numpy-c-ing-the-way-3b9658ed78f4
+https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/
+https://towardsdatascience.com/speed-up-your-algorithms-part-2-numba-293e554c5cc1
+https://medium.com/bcggamma/bring-your-python-code-up-to-speed-with-numba-1aa1c0e52885
