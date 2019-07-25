@@ -1,7 +1,9 @@
+---
 layout: post
 title: "Speeding up the python code"
 featured-img: bg
 categories: [Python]
+---
 
 # Speeding up the python code
 
