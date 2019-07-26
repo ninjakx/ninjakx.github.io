@@ -11,8 +11,6 @@ categories: [Python]
   
 # Speeding up the python code
 
-
-
 Python is one of the most popular programming languages. Most of the companies use python in production for rapid delivery. Although it is good when it comes to production but what about its performance? In that case Python fails miserably as it is slower than most of the programming languages such as c++, java, etc. So how can we make it faster?? There are several ways of doing it. 
 We will discuss it one by one.
 
@@ -49,7 +47,13 @@ Wall time: 12.3 s
 
 ## Optimizing the code using numba:
 
-The function comp_inner_raw() is using loop and we know loops in python are slow. This part is computationally slow and uses numpy in calculations so we can use Numba which is a just-in-time complier for Python that works best on the code which uses NumPy arrays, functions, and loops. Using Numba we can generate optimized machine code from our pure python code by using LLVM compiler infrastructure. This will speed up the code.
+The function comp_inner_raw() is using loop and we know loops in python are slow so we can use Numba which is a just-in-time complier for Python that works best on the code which uses NumPy arrays, functions, and loops. Using Numba we can generate optimized machine code from our pure python code by using LLVM compiler infrastructure. This will speed up the code.
+
+This is how numba works:
+
+![numba working](https://raw.githubusercontent.com/ContinuumIO/gtc2017-numba/6ddaeec9baecf07df1a22e3e685d5f6e3b4f33d9/img/numba_flowchart.png)
+
+<sub><sup>Image Courtesy: [ContinuumIO](https://github.com/ContinuumIO/gtc2017-numba/blob/master/1 - Numba Basics.ipynb?source=post_page)</sup></sub>
 
 <script src="https://gist.github.com/ninjakx/85ed714ba4c3aafac7a5a2b3466b8f25.js"></script>
 
