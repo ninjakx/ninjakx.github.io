@@ -14,9 +14,8 @@ For demonstration purpose, I have created a script for finding out the Nearest n
 Before moving to the optimization method we will first do profiling to see where it is taking a lot of time. For that we will use line profiler which is a great tool to provide the execution of each line inside the function line profiler is applied to.
 
 First, let's import NumPy and the line_profiler 
-
-<script src="http://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js"></script>
-
+<script src="https://gist.github.com/d0b692ddea91058aff0f782c8d7b6f4f.js"> </script>
+<script src="http://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js?slice=0:1"></script>
 
 ```python3
 import numpy as np
