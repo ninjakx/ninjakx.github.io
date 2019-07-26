@@ -7,6 +7,8 @@ categories: [Python]
 
 # Speeding up the python code
 
+![py_meme](https://imgflip.com/i/36jqz5)
+
 Python is one of the most popular programming languages. Most of the companies use python in production for rapid delivery. Although it is good when it comes to production but what about its performance? In that case Python fails miserably as it is slower than most of the programming languages such as c++, java, etc. So how can we make it faster?? There are several ways of doing it. 
 We will discuss it one by one.
 
@@ -22,7 +24,7 @@ Using this ```%%writefile``` cell magic we write our code in a Python script.
 
 <script src="https://gist.github.com/ninjakx/196ebe7ccd5d789c80d85588cd7579fe.js"></script>
 
-Next, we will import our script so that we can execute and profile our code using %lprun magic command and will save the report in a file named sim_result and display it into the cell.
+Next, we will import our script so that we can execute and profile our code using ```%lprun``` magic command and will save the report in a file named sim_result and display it into the cell.
 
 <script src="https://gist.github.com/ninjakx/9bd151b9113f67e69194345e39212be3.js"></script>
 
