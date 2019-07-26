@@ -5,6 +5,9 @@ featured-img: bg
 categories: [Python]
 ---
 
+![img](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/py_meme.png)
+<sub><sup>Image Courtesy: [lloyd-carson](https://www.flickr.com/photos/lloyd-carson/6348275920/?ref=weheartit)</sup></sub
+  
 # Speeding up the python code
 
 
@@ -12,7 +15,7 @@ categories: [Python]
 Python is one of the most popular programming languages. Most of the companies use python in production for rapid delivery. Although it is good when it comes to production but what about its performance? In that case Python fails miserably as it is slower than most of the programming languages such as c++, java, etc. So how can we make it faster?? There are several ways of doing it. 
 We will discuss it one by one.
 
-<img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/py_meme.jpg" width="100" height="200">
+<img src="https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/py_meme.jpg" width="500" height="600">
 
 For demonstration purpose, I have created a script for finding out the Nearest neighbors for each data points in increasing order of euclidean distances.
 Before moving to the optimization method we will first do profiling to see where it is taking more time. For that we will use line profiler which is a great tool to provide the execution of each line inside the function line profiler is applied to.
