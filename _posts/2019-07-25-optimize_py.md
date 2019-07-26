@@ -15,11 +15,9 @@ Before moving to the optimization method we will first do profiling to see where
 
 First, let's import NumPy and the line_profiler 
 
-<script src="https://gist.github.com/d0b692ddea91058aff0f782c8d7b6f4f.js"> </script>
 
 <script src="http://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js?slice=0:1"></script>
 
-<script src="https://gist.github.com/d0b692ddea91058aff0f782c8d7b6f4f.js"> </script> 
 
 ```python3
 import numpy as np
