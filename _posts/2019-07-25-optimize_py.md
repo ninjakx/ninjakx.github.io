@@ -5,7 +5,7 @@ featured-img: bg
 categories: [Python]
 ---
 
-![img](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/My Post.png)
+![img](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/My_cover_Post.png)
 
 <sub><sup>Image Courtesy: [lloyd-carson](https://www.flickr.com/photos/lloyd-carson/6348275920/?ref=weheartit)</sup></sub>
   
