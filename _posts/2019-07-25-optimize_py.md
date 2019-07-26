@@ -53,7 +53,7 @@ This is how numba works:
 
 ![numba working](https://raw.githubusercontent.com/ContinuumIO/gtc2017-numba/6ddaeec9baecf07df1a22e3e685d5f6e3b4f33d9/img/numba_flowchart.png)
 
-<sub><sup>Image Courtesy: [ContinuumIO](https://github.com/ContinuumIO/gtc2017-numba/blob/master/1 - Numba Basics.ipynb?source=post_page)</sup></sub>
+<sub><sup>Image Courtesy: [ContinuumIO](https://raw.githubusercontent.com/ContinuumIO/gtc2017-numba/6ddaeec9baecf07df1a22e3e685d5f6e3b4f33d9/img/numba_flowchart.png)</sup></sub>
 
 <script src="https://gist.github.com/ninjakx/85ed714ba4c3aafac7a5a2b3466b8f25.js"></script>
 
