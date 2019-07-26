@@ -16,7 +16,7 @@ Before moving to the optimization method we will first do profiling to see where
 First, let's import NumPy and the line_profiler 
 
 
-<script src="https://gist.github.com/ninjakx/a2c5beedfe02d8e6761cce83e61e2afe.js"></script>
+<script src="https://gist.github.com/ninjakx/9109e79ef1ac8aaa3a536ed20c7b3f5d.js"></script>
 
 ```python3
 import numpy as np
