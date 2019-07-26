@@ -16,7 +16,7 @@ Before moving to the optimization method we will first do profiling to see where
 First, let's import NumPy and the line_profiler 
 
 
-<code id="gist-4672365" data-file="2.java" data-line="2-5,10-14,11,20"></code>
+<code id="gist-a2c5beedfe02d8e6761cce83e61e2afe" data-file="compute_raw_knn.py" data-line="2-5"></code>
 
 ```python3
 import numpy as np
