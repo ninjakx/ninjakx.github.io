@@ -16,8 +16,7 @@ Before moving to the optimization method we will first do profiling to see where
 First, let's import NumPy and the line_profiler 
 
 
-<script src="http://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js?slice=0:1"></script>
-
+<code id="gist-4672365" data-file="2.java" data-line="2-5,10-14,11,20"></code>
 
 ```python3
 import numpy as np
