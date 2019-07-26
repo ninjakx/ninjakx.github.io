@@ -5,9 +5,9 @@ featured-img: bg
 categories: [Python]
 ---
 
-![img](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/py_meme.png)
+![img](https://github.com/ninjakx/ninjakx.github.io/raw/master/assets/img/posts/MyPost.png)
 
-<sub><sup>Image Courtesy: [lloyd-carson](https://www.flickr.com/photos/lloyd-carson/6348275920/?ref=weheartit)</sup></sub
+<sub><sup>Image Courtesy: [lloyd-carson](https://www.flickr.com/photos/lloyd-carson/6348275920/?ref=weheartit)</sup></sub>
   
 # Speeding up the python code
 
