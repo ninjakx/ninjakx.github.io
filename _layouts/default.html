@@ -60,7 +60,7 @@ var canvasDots =  function() {
     this.vx = -.7 + Math.random();
     this.vy = -.7 + Math.random();
 
-    this.radius = Math.random()*1.4;
+    this.radius = Math.random()*1.6;
   }
 
   Dot.prototype = {
@@ -69,7 +69,7 @@ var canvasDots =  function() {
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     //colorDot = getRandomColor(),  
     ctx.fillStyle = this.colorDot;
-    ctx.lineWidth = .1;
+    ctx.lineWidth = .2;
     ctx.strokeStyle = '#00bdbf';
       ctx.fill();
     },
@@ -119,10 +119,11 @@ var canvasDots =  function() {
       dot = dots.array[i];
 
       dot.create();
+    
     }
-
     dot.line();
     dot.animate();
+    
   }
 
   window.onmousemove = function(parameter) {
@@ -206,10 +207,10 @@ var TxtType = function(el, toRotate, period) {
 }
 .overlay {
   position: absolute;
-  top: 30%;
-  left: 20%;
-  bottom: 180;
-  right: 30%;
+  top: 25%;
+  left: 25%;
+  bottom: 100;
+  right: 25%;
   pointer-events: none;
 }
 .h1
@@ -245,14 +246,15 @@ var TxtType = function(el, toRotate, period) {
     {% include header.html %}
 <div id="container" style="background:black;text-align:center;">
  
- <canvas style="width: 100%;height:80%">
- </canvas>  
+ <canvas style="width: 100%;height:500px;">
+  </canvas> 
  <div class="overlay">
   <h1 class="typewrite" data-period="2018" data-type='[ "Hi, I am Kriti. I am passionate about learning new technology.", "Welcome to my blog :)." ]'>
     <span class="wrap"></span>
   </a>
 </h1>
   </div>
+ 
 
 </div>
 
