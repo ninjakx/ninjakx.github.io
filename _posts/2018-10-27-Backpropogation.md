@@ -45,8 +45,6 @@ We first determine how much does the total error change with respect to the outp
 
 ![img5](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B120%7D%20%5Cbegin%7Balign*%7D%20%5Cfrac%7B%5Cpartial%20E_%7Btotal%7D%7D%7B%5Cpartial%20out_%7BO1%7D%7D%20%3D%20-%28target_%7BO1%7D%20-%20out_%7BO1%7D%29%20%3D%20-%280.6%20-%200.544556%29%20%3D%200.055444%20%5Cend%7Balign*%7D)
 
-<p style="color:red">Correction: Negative sign should not be there outside the bracket</p>
-
 Then we determine how much does the output of O<sub>1</sub> change with respect to its total net input.
 For that, first we calculate the partial derivative of the logistic function which is the output multiplied by 1 minus the output.
 
